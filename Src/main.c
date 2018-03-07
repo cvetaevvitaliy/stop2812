@@ -98,7 +98,7 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
 	ws28xx_init();
-	ws28xx_test();
+//	ws28xx_test();
 	//ws28xx_Update();
   /* USER CODE END 2 */
 
@@ -107,7 +107,22 @@ int main(void)
   while (1)
   {
   /* USER CODE END WHILE */
-
+	
+//		for(int i=0;i<188;i++)
+//		{
+//			ws28xx_SetColorRGB(i,200,0,0);
+//			ws28xx_Update();
+//		}
+		
+		
+		ws28xx_SetColorArray(0,118,ws28xx_Color_Red);
+		ws28xx_Update();
+		ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+		ws28xx_Update();
+		for (int i=0;i>100;i++)
+		HAL_Delay(i);
+		
+		
   /* USER CODE BEGIN 3 */
 
   }

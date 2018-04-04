@@ -154,6 +154,13 @@ void	ws28xx_SetColor(uint16_t Pixel,ws28xx_Color_TypeDef Color)
 			ws28xxLEDs[Pixel].B = 0;
 		break;
 		//---------------------
+		//---------------------
+		case ws28xx_Color_Red2:
+			ws28xxLEDs[Pixel].G = 10;
+			ws28xxLEDs[Pixel].R = 0;
+			ws28xxLEDs[Pixel].B = 0;
+		break;
+		//---------------------
 		case ws28xx_Color_Green:
 			ws28xxLEDs[Pixel].G = 0;
 			ws28xxLEDs[Pixel].R = 255;

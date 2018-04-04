@@ -50,6 +50,43 @@ DMA_HandleTypeDef hdma_spi1_tx;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+uint8_t sample1[]={1,2,3,5,6,7,8,9,12,13,16,
+										17,18,19,22,24,27,31,38,42,43,48,52,55,57,
+										60,62,63,64,66,69,73,77,85,89,93,96,98,102,
+										105,106,111,116,117}; 
+
+uint8_t sample2[]={1,2,19,20,21,23,26,28,30,32,33,34,38,42,46,49,51,53,54,56,59,
+										62,65,66,68,70,72,75,78,
+										82,83,87,91,94,97,100};
+
+uint8_t sample3[]={9,28,30,43,48,52,
+										61,62,63,64,68,74,76,77,79,80,81,87,95,97,104};
+
+uint8_t sample4[]={17,18,19,20,21,58,59,60, 
+										61,62,63,98,99,100,101,102,103,104,105,106,107,
+										108,109,110,110,111,112,113,114,115,116,117};		
+
+uint8_t sample5[]={0,1,37,38,39,40,41,42,
+										79,80,81,82,83,84,101,102,103,104,105,106,
+										107,108,109,110,110,111,112,113,114,115,116,117};	
+
+uint8_t sample6[]={3,4,5,6,12,13,14,15,
+										22,27,31,36,43,48,52,57,61,62,65,
+										66,67,68,74,75,76,77,80,81,82,83,99,100,
+										101,102,103,104,105,106,107,108,109,110,111,112,
+										113,114,115,116,117};
+
+uint8_t sample7[]={12,13,14,15,22,27,
+										43,44,45,46,47,48,52,57,61,62,65,66,67,68,74,75,76,77,80,81,82,83,99,
+										100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117 };
+
+										
+uint8_t sample8[]={3,4,5,6,31,36,43,48,52,53,54,55,56,57,
+										61,62,65,66,67,68,74,75,76,77,80,81,
+										82,83,99,100,101,102,103,104,105,106,107,108,
+										109,110,111,112,113,114,115,116,117};
+
+										
 
 /* USER CODE END PV */
 
@@ -115,13 +152,184 @@ int main(void)
 //		}
 		
 		
-		ws28xx_SetColorArray(0,118,ws28xx_Color_Red);
-		ws28xx_Update();
-		ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
-		ws28xx_Update();
-		for (int i=0;i>100;i++)
-		HAL_Delay(i);
+//		ws28xx_SetColorArray(0,118,ws28xx_Color_Red);
+//		ws28xx_Update();
+//		ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+//		ws28xx_Update();
+//		for (int i=0;i<100;i++)
+//		HAL_Delay(i);
 		
+		
+		for(uint8_t b=0;b<10;b++)
+		{
+		for(uint8_t i =0;i<5;i++)
+				{
+					ws28xx_SetColorArray(0,60,ws28xx_Color_Red);
+					HAL_Delay(25);
+					ws28xx_Update();
+					HAL_Delay(25);
+					ws28xx_SetColorArray(0,60,ws28xx_Color_Black);
+					ws28xx_Update();
+				}
+		for(uint8_t i =0;i<8;i++)
+				{
+					ws28xx_SetColorArray(61,118,ws28xx_Color_Blue);
+				//	HAL_Delay(5);
+					ws28xx_Update();
+					HAL_Delay(25);
+					ws28xx_SetColorArray(61,118,ws28xx_Color_Black);
+					ws28xx_Update();
+				}
+			}
+		
+		for(uint8_t i =0; i<sizeof(sample1);i++)
+				{
+					ws28xx_SetColorRGB(sample1[i],255,0,0);
+				
+				}
+		ws28xx_Update();
+				
+				HAL_Delay(2000);
+				ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+				ws28xx_Update();
+			
+			for(uint8_t i =0; i<sizeof(sample2);i++)
+				{
+					ws28xx_SetColorRGB(sample2[i],0,0,200);
+				
+				}
+				ws28xx_Update();	
+			HAL_Delay(2000);
+			ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+				ws28xx_Update();
+				
+				
+				for(uint8_t i =0; i<sizeof(sample3);i++)
+				{
+					ws28xx_SetColorRGB(sample3[i],255,0,0);
+//					ws28xx_Update();
+//					HAL_Delay(100);
+				}
+				ws28xx_Update();	
+			HAL_Delay(2000);
+			ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+			ws28xx_Update();
+				
+				
+				for(int8_t i =sizeof(sample4)-1; i>-1;i--)
+				{
+					ws28xx_SetColorRGB(sample4[i],200,45,0);
+					ws28xx_Update();
+					HAL_Delay(10);
+				
+				}
+				ws28xx_Update();	
+			HAL_Delay(2000);
+			ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+				ws28xx_Update();
+				
+				for(uint8_t i =0; i<sizeof(sample5);i++)
+				{
+					ws28xx_SetColorRGB(sample5[i],200,45,0);
+					ws28xx_Update();
+					HAL_Delay(10);
+				
+				}
+				ws28xx_Update();	
+			HAL_Delay(2000);
+			ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+				ws28xx_Update();
+				
+				
+					for(uint8_t i =0; i<sizeof(sample6);i++)
+				{
+					ws28xx_SetColorRGB(sample6[i],200,0,0);
+				//	ws28xx_Update();
+				//	HAL_Delay(10);
+				
+				}
+				ws28xx_Update();	
+			HAL_Delay(2000);
+			ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+				ws28xx_Update();
+				
+				
+					for(uint8_t i =0; i<sizeof(sample7);i++)
+				{
+					ws28xx_SetColorRGB(sample7[i],0,200,0);
+				//	ws28xx_Update();
+				//	HAL_Delay(10);
+				
+				}
+				ws28xx_Update();	
+			HAL_Delay(2000);
+			ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+				ws28xx_Update();
+				
+				
+					for(uint8_t i =0; i<sizeof(sample8);i++)
+				{
+					ws28xx_SetColorRGB(sample8[i],0,200,0);
+				//	ws28xx_Update();
+				//	HAL_Delay(10);
+				
+				}
+				ws28xx_Update();	
+			HAL_Delay(2000);
+			ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+				ws28xx_Update();
+			
+
+			for(uint8_t i =0;i<100;i++)
+				{
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Red);
+				//	HAL_Delay(5);
+					ws28xx_Update();
+					HAL_Delay(5);
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+					ws28xx_Update();
+				}
+				for(uint8_t i =0;i<100;i++)
+				{
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Pink);
+					
+					ws28xx_Update();
+					HAL_Delay(5);
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+					ws28xx_Update();
+				}
+				for(uint8_t i =0;i<100;i++)
+				{
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Green);
+					
+					ws28xx_Update();
+					HAL_Delay(5);
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+					ws28xx_Update();
+				}
+				for(uint8_t i =0;i<100;i++)
+				{
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Blue);
+					
+					ws28xx_Update();
+					HAL_Delay(5);
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+					ws28xx_Update();
+				}
+				for(uint8_t i =0;i<100;i++)
+				{
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Yellow);
+				//	HAL_Delay(5);
+					ws28xx_Update();
+					HAL_Delay(5);
+					ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
+					ws28xx_Update();
+				}
+				
+				
+			
+				
+				
 		
   /* USER CODE BEGIN 3 */
 

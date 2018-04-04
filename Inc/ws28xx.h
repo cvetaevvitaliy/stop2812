@@ -27,6 +27,7 @@ typedef	enum
 {
 	ws28xx_Color_Black	=	0  	,
 	ws28xx_Color_Red				 	,
+	ws28xx_Color_Red2				 	,
 	ws28xx_Color_Green			 	,
 	ws28xx_Color_Blue					,	
 	ws28xx_Color_Yellow				,	

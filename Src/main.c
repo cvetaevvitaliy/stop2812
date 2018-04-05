@@ -53,7 +53,9 @@ DMA_HandleTypeDef hdma_spi1_tx;
 /* Private variables ---------------------------------------------------------*/
 bool ledON = false;
 bool stop = false;
-
+bool key_on=false;
+bool led_clean = false;
+uint8_t mode=0;
 
 uint8_t sample1[]={1,2,3,5,6,7,8,9,12,13,16,
 										17,18,19,22,24,27,31,38,42,43,48,52,55,57,
@@ -253,10 +255,38 @@ int main(void)
 //////			ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
 //////				ws28xx_Update();
 			
+			
+			if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5)&&HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4))
+			{
+				key_on=true;
+					if(key_on==true)
+					{
+						mode++;
+						key_on=false;
+						HAL_Delay(100);
+					}
+			}
+					
+		
+		switch (mode)
+			
+			case 0:
+				for(uint8_t i =0; i<sizeof(sample6);i++)
+						{
+							ws28xx_SetColorRGB(sample6[i],200,0,0);
+						//	ws28xx_Update();
+						//	HAL_Delay(10);
+						}
+				ws28xx_Update();	
+				break;
+						
+
+				
 
 		if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_5))	
 		{
 			ledON=true;
+			led_clean=false;
 		
 		for(uint8_t b=0;b<10;b++)
 		{
@@ -312,6 +342,8 @@ int main(void)
 		if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6))		
 			{
 				ledON=true;
+				led_clean=false;
+				
 				for(uint8_t i =0; i<sizeof(sample5);i++)
 				{
 					ws28xx_SetColorRGB(sample5[i],200,45,0);
@@ -333,6 +365,7 @@ int main(void)
 		if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_3))		
 			{
 				ledON=true;
+				led_clean=false;
 				for(uint8_t i =0; i<sizeof(sample4);i++)
 				{
 					ws28xx_SetColorRGB(sample4[i],200,45,0);
@@ -354,6 +387,7 @@ int main(void)
 		if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4))		
 		{
 			ledON=true;
+			led_clean=false;
 			stop=true;
 				for (uint8_t i =0;i<118;i++)
 					{
@@ -364,7 +398,9 @@ int main(void)
 		}
 		else
 			ledON=false;
-				if(stop==true&&ledON==false)
+		
+		
+		if(stop==true&&ledON==false)
 		{
 			for(uint8_t b = 180;b>0;b-=10){
 				for (uint8_t i =0;i<118;i++)
@@ -376,8 +412,9 @@ int main(void)
 			stop=false;
 		}
 		
-		if(ledON==false)
+		if(ledON==false&&led_clean==false)
 		{
+			led_clean=true;
 			ws28xx_SetColorArray(0,118,ws28xx_Color_Black);
 			ws28xx_Update();
 		}

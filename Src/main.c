@@ -269,17 +269,17 @@ int main(void)
 					
 		
 		switch (mode)
-			
-			case 0:
-				for(uint8_t i =0; i<sizeof(sample6);i++)
-						{
-							ws28xx_SetColorRGB(sample6[i],200,0,0);
-						//	ws28xx_Update();
-						//	HAL_Delay(10);
-						}
-				ws28xx_Update();	
-				break;
-						
+					{
+						case 0:
+							for(uint8_t i =0; i<sizeof(sample6);i++)
+									{
+										ws28xx_SetColorRGB(sample6[i],200,0,0);
+									//	ws28xx_Update();
+									//	HAL_Delay(10);
+									}
+							ws28xx_Update();
+							break;
+					}		
 
 				
 
